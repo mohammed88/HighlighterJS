@@ -1,0 +1,66 @@
+<html>
+	<head>
+		<title>Sample XHTML Document</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+		<script type="text/javascript" src="epub_hilite.js"></script>	
+		<style>	.highlight {background: #ffb7b7; fill:red;} </style>	
+	</head>
+
+	<body>	
+		<div>
+			<p>
+				Some random text. <b>Some random text.</b> Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. 
+				Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. 
+				Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. 
+				Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. 
+				Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. 
+			</p>		
+			<p>
+				Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. 
+				Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. 
+				Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. 
+				Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. 
+				Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. 
+			</p>		
+			<div>
+				<p>
+					Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. 
+					Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. 
+					Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. 
+					Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. 
+					Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. 
+				</p>		
+				
+			</div>			
+		</div>
+		
+		
+		
+		<!--CONTROLLER-->
+		<div style='border:2px solid black;padding:1em'>		
+			<span><b>CONTROLLER:</b></span><br/>
+			<span>class: </span><input type="text" id="className" />
+			<input type="button" onclick="var str = Hilite.getNodesInDocument(document,document.getElementById('className').value);out(str);" value="getNodesInDoc">/
+			<input type="button" onclick="var str = Hilite.getNodesInRange(window.getSelection().getRangeAt(0), document, document.getElementById('className').value);out(str);" value="getNodesInRange">
+			<br/>
+			<span>serializedStr: </span><input type="text" id="serialStr" />
+			<span>class: </span><input type="text" id="applyclass"/>		
+			<input type="button" onclick="Hilite.applyHighlight(document, document.getElementById('serialStr').value,document.getElementById('applyclass').value);" value="Apply Highlight"><br/>		
+			<input type="button" onclick="Hilite.removeHilite(document.body, document.getElementById('className').value);" value="Remove Highlight"><br />		
+			<div id="out"> </div>	
+		</div>	
+	</body>
+	<script>			
+			function out(str){
+				var out = document.getElementById("out");
+				out.innerHTML = "Serialized string: " + str;
+			}
+			
+			document.addEventListener('click', clickHandler);
+			function clickHandler(e){
+				if(e.target.className.split(" ")[0] === "highlight"){
+					//alert("function(" + e.target.className.split(" ")[1] + ")");
+				}
+			}
+	</script>
+</html>
