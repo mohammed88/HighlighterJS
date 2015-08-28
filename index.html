@@ -1,9 +1,8 @@
 <html>
 	<head>
 		<title>Test</title>
-		<script type="text/javascript" src="base64.js"></script>
-		<script type="text/javascript" src="hilite.js"></script>	
-		<style>	.highlight {background: #ffb7b7; fill:red;} </style>	
+		<script type="text/javascript" src="hl.js"></script>
+		<style>	h-l { background: #ffb7b7; fill: red; } </style>
 	</head>
 
 	<body>	
@@ -14,7 +13,7 @@
 				Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. 
 				Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. 
 				Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. 
-			</p>		
+			</p>
 			<p>
 				Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. 
 				Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. 
@@ -29,38 +28,36 @@
 					Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. 
 					Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. 
 					Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. Some random text. 
-				</p>		
-				
-			</div>			
+				</p>
+			</div>
 		</div>
 		
 		
 		
 		<!--CONTROLLER-->
-		<div style='border:2px solid black;padding:1em'>		
-			<span><b>CONTROLLER:</b></span><br/>
-			<span>class: </span><input type="text" id="className" />
-			<input type="button" onclick="var str = Hilite.getNodesInDocument(document,document.getElementById('className').value);out(str);" value="getNodesInDoc">/
-			<input type="button" onclick="var str = Hilite.getNodesInRange(window.getSelection().getRangeAt(0), document, document.getElementById('className').value);out(str);" value="getNodesInRange">
-			<br/>
-			<span>serializedStr: </span><input type="text" id="serialStr" />
-			<span>class: </span><input type="text" id="applyclass"/>		
-			<input type="button" onclick="Hilite.applyHighlight(document, document.getElementById('serialStr').value,document.getElementById('applyclass').value);" value="Apply Highlight"><br/>		
-			<input type="button" onclick="Hilite.removeHilite(document.body, document.getElementById('className').value);" value="Remove Highlight"><br />		
-			<div id="out"> </div>	
-		</div>	
+		<div style="border: 1px dashed black; padding: 1em; display: inline-block;">
+			<span>Id: </span><input type="text" id="id" value="a" />
+			<span>Key: </span><input type="text" id="key" /><br>
+			<span>Key=> </span><span type="text" id="out"></span><br><br>
+			<input type="button" onclick="create()" value="Create Highlight">
+			<input type="button" onclick="apply()" value="Apply Highlight">
+			<input type="button" onclick="_remove()" value="Remove Highlight">
+		</div>
 	</body>
-	<script>			
-			function out(str){
-				var out = document.getElementById("out");
-				out.innerHTML = "Serialized string: " + str;
-			}
-			
-			document.addEventListener('click', clickHandler);
-			function clickHandler(e){
-				if(e.target.className.split(" ")[0] === "highlight"){
-					//alert("function(" + e.target.className.split(" ")[1] + ")");
-				}
-			}
+	<script>
+		function create() {
+			var output = $h.create(document,document.getElementById( "id" ).value);
+			document.getElementById("out").innerHTML = output.key;
+		}
+
+		function apply() {
+			var key = document.getElementById( "key" ).value;
+					id = document.getElementById( "id" ).value;
+			$h.apply( key, document, id );
+		}
+
+		function _remove() {
+			$h.remove( document, document.getElementById( "id" ).value );
+		}
 	</script>
 </html>
